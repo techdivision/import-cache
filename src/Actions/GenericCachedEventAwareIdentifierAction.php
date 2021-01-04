@@ -23,6 +23,7 @@ namespace TechDivision\Import\Cache\Actions;
 use League\Event\EmitterInterface;
 use TechDivision\Import\Utils\CacheKeysInterface;
 use TechDivision\Import\Actions\IdentifierActionInterface;
+use TechDivision\Import\Actions\GenericEventAwareIdentifierAction;
 
 /**
  * An generic identifier action implementation that extends CRUD and event handling with cache functionality.

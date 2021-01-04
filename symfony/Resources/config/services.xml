@@ -5,6 +5,12 @@
 
     <services>
 
+        <!--
+         | The DI finder factory configuration
+         |-->
+        <service id="import_cache.repository.finder.factory.unique.cached" class="TechDivision\Import\Cache\Repositories\Finders\CachedUniqueFinderFactory">
+            <argument type="service" id="cache.configurable"/>
+        </service>
     </services>
 
 </container>
