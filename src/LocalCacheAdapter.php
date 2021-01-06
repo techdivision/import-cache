@@ -71,14 +71,14 @@ class LocalCacheAdapter implements CacheAdapterInterface
     /**
      * The cache key utility instance.
      *
-     * @var \TechDivision\Import\Utils\CacheKeyUtilInterface
+     * @var \TechDivision\Import\Cache\Utils\CacheKeyUtilInterface
      */
     protected $cacheKeyUtil;
 
     /**
      * Initialize the cache handler with the passed cache and configuration instances.
      *
-     * @param \TechDivision\Import\Utils\CacheKeyUtilInterface $cacheKeyUtil The cache key utility instance
+     * @param \TechDivision\Import\Cache\Utils\CacheKeyUtilInterface $cacheKeyUtil The cache key utility instance
      */
     public function __construct(CacheKeyUtilInterface $cacheKeyUtil)
     {

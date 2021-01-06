@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Cache\ImportBundle
+ * TechDivision\Import\Cache\CachePoolFactoryInterface
  *
  * NOTICE OF LICENSE
  *
@@ -12,7 +12,7 @@
  * PHP version 5
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
- * @copyright 2016 TechDivision GmbH <info@techdivision.com>
+ * @copyright 2021 TechDivision GmbH <info@techdivision.com>
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link      https://github.com/techdivision/import-cache
  * @link      http://www.techdivision.com
@@ -20,10 +20,8 @@
 
 namespace TechDivision\Import\Cache;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-
 /**
- * The symfony bundle implementation for the M2IF import attribute library.
+ * The interface for all cache pool factory implementations.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2021 TechDivision GmbH <info@techdivision.com>
@@ -31,6 +29,13 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * @link      https://github.com/techdivision/import-cache
  * @link      http://www.techdivision.com
  */
-class ImportBundle extends Bundle
+interface CachePoolFactoryInterface
 {
+
+    /**
+     * Create's and return's the cache pool to use.
+     *
+     * @return \Psr\Cache\CacheItemPoolInterface The initialized connection
+     */
+    public function createCachePool();
 }
