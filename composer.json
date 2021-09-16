@@ -1,7 +1,7 @@
 {
     "name": "techdivision/import-cache",
     "description": "Pacemaker library providing interfaces for Magento 2 import cache functionality",
-    "license": "OSL-3.0",
+    "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
