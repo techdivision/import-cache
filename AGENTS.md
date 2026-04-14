@@ -98,6 +98,54 @@ if (!$cacheAdapter->has('product_123')) {
 - Implementiere `CachePoolFactoryInterface` für Factory-Logik
 - Beachte PSR-6 Cache-Standards für Kompatibilität
 
+## Häufige Use Cases
+
+### Cache-Nutzungs-Muster
+```php
+// Standard Cache-Operationen
+$cacheAdapter = $cachePoolFactory->create();
+$value = $cacheAdapter->get('product_123');
+if (!$cacheAdapter->has('product_456')) {
+    $cacheAdapter->set('product_456', $productData);
+}
+$cacheAdapter->remove('product_789');
+```
+
+### Szenarien
+1. **Product-SKU Caching**: Schnelle SKU→ID Lookups
+2. **Configuration Caching**: Konfiguration für Performance cacen
+3. **Multi-Backend Support**: Redis, Memcached, File, In-Memory
+
+## Performance-Überlegungen
+
+- **Interface-Overhead**: Minimal - nur polymorphic dispatch
+- **Backend-abhängig**: Performance hängt von Tier 1 Implementierung ab
+- **Hit-Rate**: Mit Caching können 70-90% der Lookups aus Cache erfolgen (~1-2ms statt 5-10ms DB)
+- **TTL-Management**: Cache-Invalidation ist kritisch - falsche TTLs = stale data
+- **Optimal für**: Product-SKUs, Attribute-Codes, Category-Paths
+
+## Verwandte Module
+
+- **import-cache-collection**: Implementiert In-Memory Cache
+- **import-dbal**: Nutzt Cache für DBAL-Lookups
+- **import-dbal-collection**: Nutzt Cache-Integration
+- **import**: Core Framework nutzt Cache
+- **import-cache** ← **diese Datei** (nur Interfaces!)
+
+## Troubleshooting & FAQ
+
+**Q: Wo sind die Cache-Implementierungen?**
+- A: In `import-cache-collection` für In-Memory. Für Redis: custom Implementierung.
+
+**Q: Kann ich mehrere Cache-Backends kombinieren?**
+- A: Ja! Implementiere eigene Adapter die mehrere Backends delegieren (z.B. L1: Memory, L2: Redis).
+
+**Q: Cache-Keys kollidieren**
+- A: Nutze `namespace` Prefix in Keys: `'product_' . $sku`, `'attribute_' . $code`
+
+**Q: Cache wird nicht invalidiert**
+- A: Manuelle Invalidierung nötig! Kein Auto-Invalidation bei Updates.
+
 ## Bekannte Einschränkungen
 
 - **Nur Interfaces**: Keine konkrete Implementierung enthalten
